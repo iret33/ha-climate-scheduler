@@ -1,0 +1,59 @@
+apply_preset:
+  name: Apply Preset
+  description: Apply a preset mode manually, bypassing schedule.
+  target:
+    entity:
+      domain: climate
+      integration: climate_scheduler
+  fields:
+    preset:
+      name: Preset
+      description: The preset mode to apply.
+      required: true
+      selector:
+        select:
+          options:
+            - home
+            - away
+            - sleep
+            - vacation
+
+enable_schedule:
+  name: Enable Schedule
+  description: Re-enable automatic schedule control.
+  target:
+    entity:
+      domain: climate
+      integration: climate_scheduler
+
+disable_schedule:
+  name: Disable Schedule
+  description: Disable automatic schedule control until manually re-enabled.
+  target:
+    entity:
+      domain: climate
+      integration: climate_scheduler
+
+set_schedule:
+  name: Set Schedule
+  description: Update the schedule for a specific day type.
+  target:
+    entity:
+      domain: climate
+      integration: climate_scheduler
+  fields:
+    schedule_type:
+      name: Schedule Type
+      description: Whether to update weekday or weekend schedule.
+      required: true
+      selector:
+        select:
+          options:
+            - weekday
+            - weekend
+    schedule:
+      name: Schedule
+      description: List of time and preset pairs (e.g., [{"time": "08:00", "preset": "away"}]).
+      required: true
+      selector:
+        object:
